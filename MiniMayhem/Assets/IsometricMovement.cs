@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class IsometricMovement : MonoBehaviour, Controls.IPlayerActions
+public class IsometricMovement : NetworkBehaviour, Controls.IPlayerActions
 
 {
     public float speed = 5f;
@@ -30,6 +31,7 @@ public class IsometricMovement : MonoBehaviour, Controls.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!IsOwner) return;
         Vector2 readVector = context.ReadValue<Vector2>();
         Vector3 toConvert = new Vector3(readVector.x, 0, readVector.y);
         _direction = IsoVectorConvert(toConvert);
