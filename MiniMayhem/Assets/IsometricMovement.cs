@@ -6,11 +6,26 @@ using UnityEngine.InputSystem;
 
 public class IsometricMovement : NetworkBehaviour, Controls.IPlayerActions
 
+
 {
+    private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public float speed = 5f;
     public CharacterController controller;
     public Vector3 _direction;
+
+
+
+
+    public override void OnNetworkSpawn()
+    {
+        randomNumber.OnValueChanged += (int previousValue, int newValue) =>
+        {
+            Debug.Log(OwnerClientId + "; Ra" + randomNumber.Value);
+         
+        };
+    }
     public void Start()
+
     {
         controller = GetComponent<CharacterController>();
     }
@@ -46,6 +61,12 @@ public class IsometricMovement : NetworkBehaviour, Controls.IPlayerActions
     }
     public void Update()
     {
+      
+        if (!IsOwner) return;
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            randomNumber.Value = Random.Range(0, 100);
+        }
         controller.Move(_direction * speed * Time.deltaTime);
     }
 }
