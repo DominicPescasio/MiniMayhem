@@ -49,11 +49,16 @@ public class TestLobby : MonoBehaviour
         {
             string lobbyName = "Ny Lobby";
             int maxPLayers = 4;
+            CreateLobbyOptions createLobbyOptions = new CreateLobbyOptions
+            {
+                IsPrivate = true,
+            };
+
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPLayers);
 
             mainLobby = lobby;
 
-            Debug.Log("Created Lobby!" + lobby.Name + " " + lobby.MaxPlayers);
+            Debug.Log("Created Lobby!" + lobby.Name + " " + lobby.MaxPlayers + " " + lobby.Id + " " + lobby.LobbyCode);
         }
         catch (LobbyServiceException e)
         {
@@ -68,6 +73,19 @@ public class TestLobby : MonoBehaviour
     {
         try
         {
+            QueryLobbiesOptions queryLobbiesOptions = new QueryLobbiesOptions
+            {
+                Count = 25,
+                Filters = new List<QueryFilter>
+                {
+                    new QueryFilter(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT)
+            },
+                Order = new List<QueryOrder>
+                {
+new QueryOrder(false, QueryOrder.FieldOptions.Created)
+                }
+            };
+            
             QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync();
 
             Debug.Log("Lobbies Found: " + queryResponse.Results.Count);
@@ -82,6 +100,18 @@ public class TestLobby : MonoBehaviour
         }
     }
 
+    private async void JoinLobby(string lobbyCode)
+    {
+        try
+        {
+           await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
+
+            Debug.Log("joined Lobby with code " + lobbyCode);
+        }catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
 
 
 

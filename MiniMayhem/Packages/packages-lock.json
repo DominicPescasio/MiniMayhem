@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.pyton.cheatconsole": {
+      "version": "file:cheatconsole-master",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.3",
       "depth": 1,
