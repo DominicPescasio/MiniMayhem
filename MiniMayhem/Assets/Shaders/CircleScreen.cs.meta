@@ -3,7 +3,9 @@ guid: 605e4346b03f3e94bb218a82aaf56a34
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - WallMaterial: {fileID: 2100000, guid: 0adee5ed51c6ad74ca6bd0928d7f7a20, type: 2}
+  - Camera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

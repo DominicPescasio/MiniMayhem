@@ -347,7 +347,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 7992963995074645003}
   - component: {fileID: 8129574878655935516}
   - component: {fileID: 8916277159365700146}
+  - component: {fileID: 255626345603400887}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -517,3 +518,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &255626345603400887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530627665419371414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605e4346b03f3e94bb218a82aaf56a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallMaterial: {fileID: 2100000, guid: 0adee5ed51c6ad74ca6bd0928d7f7a20, type: 2}
+  Camera: {fileID: 8884223896832612041}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 8

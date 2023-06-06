@@ -22,6 +22,10 @@ public class TestLobby : MonoBehaviour
             Debug.Log("Signed in" + AuthenticationService.Instance.PlayerId);
         };
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        CheatConsole.OnOpen.AddListener(() => Debug.Log("Opened"));
+        CheatConsole.OnClose.AddListener(() => Debug.Log("Closed"));
+
     }
 
     private void Update()
@@ -42,7 +46,7 @@ public class TestLobby : MonoBehaviour
             }
                 }
     }
-
+    [Cheat]
     public async void CreateLobby()
     {
         try
@@ -68,8 +72,8 @@ public class TestLobby : MonoBehaviour
 
 
 
-
-    public async void listLobbies()
+    [Cheat]
+    public static async void listLobbies()
     {
         try
         {
@@ -99,7 +103,7 @@ new QueryOrder(false, QueryOrder.FieldOptions.Created)
             Debug.Log(e);
         }
     }
-
+    [Cheat]
     private async void JoinLobby(string lobbyCode)
     {
         try

@@ -15,13 +15,14 @@ public class CircleScreen : MonoBehaviour
     public LayerMask Mask;
 
 
+  
     void Update()
     {
         var dir = Camera.transform.position - transform.position;
         var ray = new Ray(transform.position, dir.normalized);
 
         if (Physics.Raycast(ray, 3000, Mask))
-            WallMaterial.SetFloat(SizeID, 1);
+            WallMaterial.SetFloat(SizeID, .75f);
         else
             WallMaterial.SetFloat(SizeID, 0);
 
